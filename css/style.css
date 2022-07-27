@@ -1,0 +1,723 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+  color: white;
+  box-sizing: border-box;
+  /* la propriété box-sizing facilite le calcule des dimensions de tous les éléments
+    source: https://fr.w3docs.com/apprendre-css/box-sizing.html*/
+  text-decoration: none; /* supprime le soulignement des textes quand on utilise la balise <a> */
+}
+
+body {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  background-color: #040221;
+}
+
+/* mettre la racine du fichier css sur laquelle est bassé le tailles REM (par défaut le root est à 16px) on peut créer une nouvelle root pour la version mobile ou tablet dans un MEDIA QUERIES */
+.root {
+  font-size: 10px;
+}
+
+/* ---------------------MODIFICATION - position AND TOP VH ---------------------------------------*/
+/*RESPONSIVE MENU MOBILE FIRST BURGER*************************/
+
+
+header {
+  background-color: #040221;
+  text-align: center;
+  position: fixed;
+  z-index: 999; /*to make sure it is on top position if there are many layers*/
+  width: 100%;
+  height: 10vh;
+}
+
+/*to remove the check-box as the span section is clickable*/
+.nav-toggle {
+  display: none;
+}
+
+/*to have the span to the left of the page, centered to the header */
+.nav-toggle-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 1em;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/*to create the 3 little bars for the burger*/
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  display: block;
+  background: white;
+  border-radius: 5px;
+  height: 3px;
+  width: 2rem;
+  position: relative;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  content:""; /*necessary or it default to none and nothing shows*/
+  position: absolute;
+}
+
+.nav-toggle-label span::before {
+  bottom: 7px;
+}
+
+.nav-toggle-label span::after {
+  top: 7px;
+}
+
+nav {
+  background-color: #040221;
+  position: absolute;
+  text-align:left;
+  top: 100%;
+  left: 0;
+  display: none; /*to make my nav mobile first disapear*/
+}
+
+nav ul {
+  list-style: none; /*gets rid of the bullet points*/
+}
+
+nav li {
+  margin-bottom: 1em;
+  margin-left: 1em;
+
+}
+
+nav a {
+  padding-top: 10px;
+  border-radius: 10px;
+  background-color: red;
+  padding: 0.4rem;
+  color: white;
+  text-decoration: none; /*gets ride of the underline hyperlinks*/
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  margin-right: 20px;
+}
+
+nav a:hover {
+  color: black;
+}
+
+
+/*pseudo class "checked" to see if the check box is checked*/
+/* ~ it is looking for the preceeding simbling "nav" of nav-toggle */
+.nav-toggle:checked ~  nav{
+  display: block; /*when you click on the check box the menu opens*/
+}
+
+/* BURGER MENU FOR BIG SCREENS ******************* */
+@media screen and (min-width: 768px) {
+  .nav-toggle-label {
+    display:none;
+  }
+  header {
+    display:grid;
+    grid-template-columns: 1fr 1fr auto 0.5fr;
+    padding-top: 20px;
+    padding-bottom: 20px
+  }
+  nav {
+    all: unset; /*to remove all the css we did before*/
+    grid-column: 2 / 3;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  nav ul {
+    display: flex;
+    justify-content: flex-end; /*to strech the nav content to the entire height of the header*/
+  }
+  nav li {
+    margin-bottom: 0;
+  }
+
+  nav a {
+    font-size: 1rem;
+    border-radius: 15px;
+  }
+}
+
+/*END RESPONSIVE MENU MOBILE FIRST BURGER**************************************/
+
+
+/* BEGINNING section 1 sydney photo */
+
+.section1 {
+  background-image: url("../Images/Australia-Sydney.JPG");
+  background-size: cover; /*will use the space given */
+  background-position: center; /* in the middle of the div */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* ici je met position:relative pour ajouter un filtre par dessus ton image */
+  position: relative; /* important à connaitre: source: https://www.w3schools.com/css/css_positioning.asp */
+}
+
+/* ici je vais rajouter un filtre noire sur ton image comme elle est tres claire et que ton texte est blanc, pour que ce soit plus visible */
+.filter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.39);
+}
+
+.section1-Logo-LinkedIn {
+  width: 50px;
+  border-radius: 50px;
+}
+
+.section1-welcome {
+  text-align: center;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: bold;
+  /* comme j'ai ajouté le filtre noire, ici z-index: 10, permet de faire en sorte que ton texte passe au premier plan, si tu l'enleves tu verras que le filtre sera au premier plan */
+  z-index: 10;
+}
+
+.section1-text {
+  line-height: 1.8rem; /* space between lines of text */
+  text-align: center;
+  /* comme j'ai ajouté le filtre noire, ici z-index: 10, permet de faire en sorte que ton texte passe au premier plan, si tu l'enleves tu verras que le filtre sera au premier plan */
+  z-index: 10;
+}
+
+.section1-text h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.section1-text h2 {
+  font-size: 1.2rem;
+}
+
+.section1-text h3 {
+  font-size: 1rem;
+}
+
+/*I created a HOVER on the LinkedIn image TOP SECTION 1 and BOTTOM SECTION 6 */
+
+/*FULL SCREEN ****************/
+@media screen and (min-width: 768px) {
+  .section1 {
+    row-gap: 180px; /*gap between welcome and my name */
+    min-height: 100vh;
+  }
+  .section1-welcome {
+    font-size: 2.8rem;
+    line-height: 4rem;
+  }
+.section1-text h1 {
+  font-size: 2.8rem;
+  font-weight: bold;
+  line-height: 4rem;
+}
+.section1-text h2 {
+  font-size: 1.8rem;
+  line-height: 3rem;
+}
+.section1-text h3 {
+  font-size: 1.3rem;
+  line-height: 3rem;
+ }
+
+}
+
+/* END section 1 sydney photo *****************************************/
+
+/* BEGINNING section 2 ABOUT ME ******************************************/
+
+/*IMAGE SCROLL DOWN TO BRING THE ANCHOR BELOW THE NAV BAR */
+.scroll-down {
+  max-width: 10%;
+  margin-bottom: 30px;
+} 
+
+.section2 {
+  display: flex; /*ADDED BECAUSE OF THE SCROLL DOWN IMAGE*/
+  flex-direction: column; /*ADDED BECAUSE OF THE SCROLL DOWN IMAGE*/
+  justify-content: center; /*ADDED BECAUSE OF THE SCROLL DOWN IMAGE */
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 10px;
+  padding: 20px ;
+}
+
+.section2 h1 {
+  border-bottom: 5px solid red;
+  width: fit-content; /*que la box s'adapte au contenu */
+  font-size: 2rem;
+  margin: 0 auto;
+}
+
+.section2-container {
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(1, 1fr);
+  padding-top: 30px;
+ }
+
+.section2-drawing-vero {
+  display: flex;
+  width: 40%;
+}
+
+@media screen and (min-width: 768px) {
+  .section2-container {
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap: 50px;
+  }
+  .section2-text {
+    margin-left: 10rem;
+  }
+   .section2 {
+    min-height: 50vh;
+    padding-top: 30px;
+  }
+
+}
+
+/* ENDsection 2 ABOUT ME ******************************************************************************/
+
+/* BEGINNING section 3 PORTFOLIO */
+
+.section3 {
+  min-height: 100vh;
+  padding-top: 30px;
+  display: flex; /*ADDED BECAUSE OF THE SCROLL BUTTON */
+  flex-direction: column; /*ADDED BECAUSE OF THE SCROLL BUTTON */
+  align-items: center; /*ADDED BECAUSE OF THE SCROLL BUTTON */
+  }
+
+.section3 > h1 {
+  border-bottom: 5px solid red;
+  width: min-content; /*que la box s'adapte au contenu*/
+  font-size: 2rem;
+  margin: 0 auto;
+}
+
+.portfolioContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.portfolio {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 35px;
+  padding-bottom: 30px;
+}
+
+
+.item {
+  width: 10rem;
+  height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+  border-radius: 15px;
+  padding: 8px;
+}
+
+
+.item > a {
+  text-align: center;
+}
+
+.item a:hover {
+  color: black;
+}
+
+@media screen and (min-width: 768px) {
+  .portfolio {
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap: 50px;
+}
+  .section3 {
+    min-height: 50vh;
+    padding-top: 30px;
+  }
+}
+
+/* END section 3 PORTFOLIO ********************************************************/
+
+
+/* BEGINNING section 4 EXPERIENCE ********************************************************/
+
+.section4 {
+  background-color: #040221;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 10px;
+}
+
+.section4 > h1 {
+  border-bottom: 5px solid red;
+  width: min-content; /*que la box s'adapte au contenu */
+  font-size: 2rem;
+}
+
+/* Style buttons DOWNLOAD CV */
+.button {
+  background-color: red;
+  border: none;
+  border-radius: 50px;
+  color: white;
+  padding: 12px 30px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.button a {
+  text-decoration: none;
+}
+
+/* Style buttons hover DOWNLOAD CV*/
+.button a:hover {
+  color: black;
+}
+
+.section4-content {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 10px;
+  padding: 40px 40px;
+}
+
+.section4-text {
+  border: 4px solid red;
+  background-color: red;
+  border-radius: 50px;
+}
+
+.section4-text > h2 {
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+
+.section4-text > p {
+  font-size: 0.8rem;
+  padding: 1rem;
+}
+
+
+.progressBar {
+  background-color: white;
+  border-radius: 50px;
+  color: black;
+  height: 1.5rem;
+  margin: 0.5srem;
+
+}
+
+.progressBar-50 {
+  background-color: red;
+  width: 50%;
+  height: 1.5rem;
+}
+
+.progressBar-40 {
+  background-color: red;
+  width: 40%;
+  height: 1.5rem;
+}
+
+.progressBar-20 {
+  background-color: red;
+  width: 20%;
+  height: 1.5rem;
+}
+
+.code {
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+@media screen and (min-width: 768px) {
+  .section4-content {
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+}
+.section4-text {
+  border: 4px solid red;
+  background-color: red;
+  border-radius: 50px;
+}
+
+.section4-text > h2 {
+  font-size: 2rem;
+}
+
+.section4-text > p {
+  font-size: 1rem;
+}
+
+.progressBar {
+  height: 3rem;
+  margin: 1rem;
+
+}
+
+.progressBar-50 {
+  width: 50%;
+  height: 3rem;
+}
+
+.progressBar-40 {
+  width: 40%;
+  height: 3rem;
+}
+
+.progressBar-20 {
+  width: 20%;
+  height: 3rem;
+}
+
+.code {
+  font-size: 1.5rem;
+}
+  }
+
+
+/* END section 4 EXPERIENCE ********************************************************/
+
+/* BEGINNING section 5 CONTACT + FORM ********************************************************/
+.section5 {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+  gap: 50px;
+  padding: 10px;
+  min-height: 100vh;
+}
+
+.section5 > h1 {
+  border-bottom: 5px solid red;
+  width: min-content; /*que la box s'adapte au contenu */
+  font-size: 2rem;
+ }
+
+/* BEGINNING CONTACT FORM */
+
+ form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 16px;
+  background-color: #fff;
+  padding: 32px;
+  border-radius: 16px;
+ }
+
+
+label {
+  display: block;
+  margin-bottom:5px;
+  color: #888;
+  font-size: 14px;
+}
+
+.form-element {
+  appearance:none;
+  outline: none;
+  border: none;
+
+  display: block;
+  width: 100%;
+
+  border-radius: 8px;
+  padding: 12px;
+  background-color: #F3F3F3;
+}
+
+textarea {
+  resize: none;
+  height: 100px;
+}
+
+.form-group.full {
+  grid-column: 1/-1;
+}
+
+/* managing the design of the button */
+/* to align the box button in the center */
+.submit-group {
+grid-column: 1/-1;
+text-align: center;
+}
+
+/*to target the inside of the box button*/
+input {
+appearance: none;
+border: none;
+outline: none;
+background: none;
+
+padding: 12px 16px;
+background-color: red;
+border-radius: 8px;
+color: white;
+cursor: pointer;
+transition: 0.4s;
+}
+
+/*bien cibler le hover du button sinon le hover se place sur tous les inputs !! */
+.submit-group input:hover {
+color: black;
+font-weight: bold;
+}
+
+
+.contactForm {
+  min-height: 100vh;
+  padding: 50px;
+  border: 2px solid red;
+  border-radius: 50px ;
+  margin: auto;
+  max-width: 1280px;
+}
+
+.contactForm h2 {
+  text-align: center;
+  padding: 1rem;
+}
+
+.contactForm p {
+  text-align: center;
+  padding: 1rem;
+}
+
+@media screen and (min-width: 768px)  {
+  form {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+     }
+}
+  
+
+
+/* END section 5 CONTACT + FORM ********************************************************/
+
+/*  BEGINNING section 6 WITH LINKS ********************************************************/
+
+.section6 {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: #040221;
+  gap: 10px;
+  padding-top: 10px;
+  min-height: 30vh;
+}
+
+.section6 > h1 {
+  border-bottom: 5px solid red;
+  width: fit-content; /*que la box s'adapte au contenu */
+  font-size: 2rem;
+}
+
+.section6 a {
+  text-decoration: none;
+}
+
+.section6 a:hover {
+  color: red;
+}
+
+/*HOVER DU BOUTON LINKEDIN TOP AND BOTTOM OF THE PAGE */
+.section1-Logo-LinkedIn:hover {
+  border: 2px solid red;
+}
+
+/* FIN section 6 LIENS ********************************************************/
+
+/* BEGINNING section 7 LEGAL NOTICE top section WHICH OPENS IN AN NEW HTML PAGE ************************/
+/* SECTION 7 IS A COPIE OF THE BURGER MENU & TOP SECTION 1 (text + syndey) OF THE INDEX PAGE ********************/
+
+/* DEBUT section 8 LEGAL NOTICE TEXTE ************************/
+
+.section8 {
+  display: flex;
+  flex-direction: column;
+  background-color: #040221;
+  align-items: center;
+  padding: 30px;
+  min-height: 100vh;
+}
+
+.section8 h1 {
+  border-bottom: 5px solid red;
+  width: fit-content; /*que la box s'adapte au contenu */
+  font-size: 2rem;
+}
+
+.section8-text {
+  border: 1px solid red;
+  border-radius: 15px;
+  font-size: 0.7rem;
+  padding: 20px;
+  margin: 10px;
+  width: auto;
+}
+
+.section8-text h2 {
+  margin: 10px;
+}
+
+.section8-text h3 {
+  margin: 5px;
+} 
+
+@media screen and (min-width: 768px) {
+  .section8 {
+    background-color: black;
+    padding: 30px;
+  }
+  .section8-text {
+    font-size: 1rem;
+    padding: 20px;
+    margin: 100px;
+    width: auto;
+  }
+  .section8-text h2 {
+    margin: 20px;
+  }
+  .section8-text h3 {
+    margin: 10px;
+  } 
+}
+/*FIN SECTION 8 *****************/
+
