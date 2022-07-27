@@ -550,6 +550,7 @@ label {
 }
 
 .form-element {
+  color: black;
   appearance:none;
   outline: none;
   border: none;
